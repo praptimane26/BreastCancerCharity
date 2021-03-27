@@ -31,6 +31,7 @@
 
 .task-list-container {
     display: flex;
+    flex-direction: column;
     flex-grow: 1;
     padding: 42px;
 
@@ -66,7 +67,37 @@
         &:hover {
             background: $light;
         }
+
+        &.is-active {
+            background-color: #cff8ef;
+            color: $dark-green;
+        }
     }
-    
+   
+}
+
+.task {
+    background: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+
+    &:not(.complete) {
+    cursor: pointer;
+    transition: box-shadow 0.2sec ease, transform 0.2sec ease;
+
+    &:active {
+        transform: scale(0.95);
+    }
+
+    &:hover {
+        box-shadow: 0 0 0 5px #eeeeee;
+    }
+}
+
+    &.complete {
+        text-decoration: line-through;
+        opacity: 80%;
+    }
 }
 
