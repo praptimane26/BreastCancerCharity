@@ -52,8 +52,13 @@ app.patch("/lists/:id", (req, res) => {
 });
 
 //DELETE/lists/:id (Purpose to delete the specified list)
-app.delete("/id", (req, res) => {
+app.delete("/lists/:id", (req, res) => {
   //we want to delete the specified list (list document with id in the url) with the new values specified in the JSON body request
+  List.findOneAndRemove({
+    _id: req.params.id,
+  }).then((removedListDoc) => {
+    res.send(removedListDoc);
+  });
 });
 
 app.listen(3000, () => {
