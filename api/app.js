@@ -6,7 +6,7 @@ const { mongoose } = require("./db/mongoose");
 const bodyParser = require("body-parser");
 
 //Load in the mongoose models
-const { list: List, Task } = require("./db/models");
+const { List, Task } = require("./db/models");
 
 //Load Middleware
 app.use(bodyParser.json());
@@ -39,8 +39,16 @@ app.post("/lists", (req, res) => {
 });
 
 //PATCH/lists/:id (Purpose to update the specfied list )
-app.patch("/:id", (req, res) => {
+app.patch("/lists/:id", (req, res) => {
   // we want to update the specified list (list document with id in the url) with the new values specified in the JSON body request
+  List.findOneAndUpdate(
+    { _id: req.params.id },
+    {
+      $set: req.body,
+    }
+  ).then(() => {
+    res.sendStatus(200);
+  });
 });
 
 //DELETE/lists/:id (Purpose to delete the specified list)
