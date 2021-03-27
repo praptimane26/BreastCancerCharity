@@ -15,11 +15,10 @@ mongoose
     console.log(e);
   });
 
-  //To prevent deprecation warnings (from MongoDB native driver)
-  mongoose.set('useCreateIndex', true);
-  mongoose.set('useFindAndModify', false);
+//To prevent deprecation warnings (from MongoDB native driver)
+mongoose.set("useCreateIndex", true);
+mongoose.set("useFindAndModify", false);
 
-
-  module.exports = {
-      
-  }
+module.exports = {
+  mongoose,
+};
