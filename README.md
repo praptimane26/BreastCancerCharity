@@ -3,7 +3,6 @@
 to start the front end - ng serve runs on localhost4200
 to run the backend nodemon app.js or npm start will work too as long as you're in the api folder
 
-Todd you have been added as a collaborator so should be good to go!
 This is an API fr the first phase which is the Task Manager "Once in the front end with backend running please click on the "Howdy List" to see how the task does get added"
 
 Post Man Steps to check the Lists
