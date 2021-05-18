@@ -3,7 +3,7 @@
 
         <div class="sidebar has-background-white">
             <h1 class="title has-text-primary">
-                Routine Checks
+                Lists
             </h1>
 
             <div class="list-menu">
@@ -25,13 +25,14 @@
 
 
             <!-- Task Elements-->
-            <div class="task" *ngFor="let task of tasks">
+            <div class="task" *ngFor="let task of tasks" (click)="onTaskClick(task)" [ngClass]="{ 'completed': task.completed }">
+                <div class="task-text">
                 <p>{{ task.title }}</p>
             </div>
+            </div>
 
-            <button class="circle-add-button button is-primary">
-                <img src="../../../assets/plus-icon.svg">
-
+            <button routerLink="./new-task"  class="circle-add-button button is-primary">
+                <img src="../../../assets/plus-icon.svg" class="has-text-white">
             </button>
 
         </div>
