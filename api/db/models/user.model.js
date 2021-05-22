@@ -3,7 +3,7 @@ const _ = require("lodash");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const bcrypt = require("bcryptjs");
-const { resolve } = require("path");
+/*const { resolve } = require("path");*/
 
 //JWT Secrets
 const jwtSecret = "72432293410771688139breastcancerawareness2167635028";
@@ -114,10 +114,10 @@ UserSchema.statics.findByIdAndToken = function (_id, token) {
 
 UserSchema.statics.findByCredentials = function (email, password) {
   let User = this;
-  return user.findOne({ email }).then((user) => {
+  return User.findOne({ email }).then((user) => {
     if (!user) return Promise.reject();
 
-    return new Promise((reslove, reject) => {
+    return new Promise((resolve, reject) => {
       bcrypt.compare(password, user.password, (err, res) => {
         if (res) resolve(user);
         else {
@@ -143,13 +143,13 @@ UserSchema.statics.hasRefreshTokenExpired = (expiresAt) => {
 // Before the user document is saved this code runs
 UserSchema.pre("save", function (next) {
   let user = this;
-  let CostFactor = 10;
+  let costFactor = 10;
 
   if (user.isModified("password")) {
     // if password is changed/edited run this code
 
     //Generate Salt and hash the password
-    bcrypt.genSalt(CostFactor, (err, salt) => {
+    bcrypt.genSalt(costFactor, (err, salt) => {
       bcrypt.hash(user.password, salt, (err, hash) => {
         user.password = hash;
         next();

@@ -8,8 +8,8 @@ const { mongoose } = require("./db/mongoose");
 const bodyParser = require("body-parser");
 
 //Load in the mongoose models
-const { List, Task } = require("./db/models");
-const { User } = require("./db/models/user.model");
+const { List, Task, User } = require("./db/models");
+/*const { User } = require("./db/models/user.model");*/
 
 //Load Middleware
 app.use(bodyParser.json());
@@ -180,19 +180,20 @@ app.post("/users/login", (req, res) => {
       return user
         .createSession()
         .then((refreshToken) => {
-          // Session created successfully - refreshToken returned
-          // now we can generate an access authorization token for the user
+          // Session created successfully - refreshToken returned.
+          // now we geneate an access auth token for the user
 
           return user.generateAccessAuthToken().then((accessToken) => {
-            //access authorization generation was successful and we can now return the object containing the auth tokens
+            // access auth token generated successfully, now we return an object containing the auth tokens
             return { accessToken, refreshToken };
           });
         })
         .then((authTokens) => {
+          // Now we construct and send the response to the user with their auth tokens in the header and the user object in the body
           res
             .header("x-refresh-token", authTokens.refreshToken)
             .header("x-access-token", authTokens.accessToken)
-            .send(newUser);
+            .send(user);
         });
     })
     .catch((e) => {
