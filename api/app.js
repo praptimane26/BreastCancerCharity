@@ -9,6 +9,7 @@ const bodyParser = require("body-parser");
 
 //Load in the mongoose models
 const { List, Task } = require("./db/models");
+const { User } = require("./db/models/user.model");
 
 //Load Middleware
 app.use(bodyParser.json());
@@ -130,6 +131,70 @@ app.delete("/lists/:listId/tasks/:taskId", (req, res) => {
     _listId: req.params.listId,
   }).then((removeTaskDoc) => {
     res.send(removeTaskDoc);
+  });
+});
+
+//User Routes
+
+//POST/users (Purpose Sign Up)
+
+app.post("/users", (req, res) => {
+  //user sign up
+
+  let body = req.body;
+  let newUser = new User(body);
+
+  newUser
+    .save()
+    .then(() => {
+      return newUser.createSession();
+    })
+    .then((refreshToken) => {
+      // Session created successfully - refreshToken returned
+      // now we can generate an access authorization token for the user
+
+      return newUser.generateAccessAuthToken().then((accessToken) => {
+        //access authorization generation was successful and we can now return the object containing the auth tokens
+        return { accessToken, refreshToken };
+      });
+    })
+    .then((authToken) => {
+      res
+        .header("x-refresh-token", authTokens.refreshToken)
+        .header("x-access-token", authTokens.accessToken)
+        .send(newUser);
+    })
+    .catch((e) => {
+      res.status(400).send(e);
+    });
+});
+
+//POST/users/login (Purpose Login)
+
+app.post("/users/login", (req, res) => {
+  let email = req.body.email;
+  let password = req.body.password;
+
+  User.findByCredentials(email, password).then((user) => {
+    return user
+      .createSession()
+      .then((refreshToken) => {
+        // Session created successfully - refreshToken returned
+        // now we can generate an access authorization token for the user
+
+        return user.generateAccessAuthToken().then((accessToken) => {
+          //access authorization generation was successful and we can now return the object containing the auth tokens
+          return { accessToken, refreshToken };
+        });
+      })
+      .then((authTokens) => {
+        res
+          .header("x-refresh-token", authTokens.refreshToken)
+          .header("x-access-token", authTokens.accessToken)
+          .send(newUser);
+      });
+  }).catch((e) => {
+    res.status(400).send(e);
   });
 });
 
