@@ -158,7 +158,7 @@ app.post("/users", (req, res) => {
         return { accessToken, refreshToken };
       });
     })
-    .then((authToken) => {
+    .then((authTokens) => {
       res
         .header("x-refresh-token", authTokens.refreshToken)
         .header("x-access-token", authTokens.accessToken)
@@ -175,27 +175,29 @@ app.post("/users/login", (req, res) => {
   let email = req.body.email;
   let password = req.body.password;
 
-  User.findByCredentials(email, password).then((user) => {
-    return user
-      .createSession()
-      .then((refreshToken) => {
-        // Session created successfully - refreshToken returned
-        // now we can generate an access authorization token for the user
+  User.findByCredentials(email, password)
+    .then((user) => {
+      return user
+        .createSession()
+        .then((refreshToken) => {
+          // Session created successfully - refreshToken returned
+          // now we can generate an access authorization token for the user
 
-        return user.generateAccessAuthToken().then((accessToken) => {
-          //access authorization generation was successful and we can now return the object containing the auth tokens
-          return { accessToken, refreshToken };
+          return user.generateAccessAuthToken().then((accessToken) => {
+            //access authorization generation was successful and we can now return the object containing the auth tokens
+            return { accessToken, refreshToken };
+          });
+        })
+        .then((authTokens) => {
+          res
+            .header("x-refresh-token", authTokens.refreshToken)
+            .header("x-access-token", authTokens.accessToken)
+            .send(newUser);
         });
-      })
-      .then((authTokens) => {
-        res
-          .header("x-refresh-token", authTokens.refreshToken)
-          .header("x-access-token", authTokens.accessToken)
-          .send(newUser);
-      });
-  }).catch((e) => {
-    res.status(400).send(e);
-  });
+    })
+    .catch((e) => {
+      res.status(400).send(e);
+    });
 });
 
 app.listen(3000, () => {
