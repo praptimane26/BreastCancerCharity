@@ -11,6 +11,8 @@ const bodyParser = require("body-parser");
 const { List, Task, User } = require("./db/models");
 /*const { User } = require("./db/models/user.model");*/
 
+//MiddleWAre
+
 //Load Middleware
 app.use(bodyParser.json());
 
@@ -27,6 +29,59 @@ app.use(function (req, res, next) {
   );
   next();
 });
+
+//Verify REfresh Token Middleware which will be verifying the session
+let verifySession = (req, res, next) => {
+  //grad the request token from the header
+  let refreshToken = req.header("x-refresh-token");
+
+  let _id = req.header("_id");
+
+  User.findByIdAndToken(_id, refreshToken)
+    .then((user) => {
+      if (!user) {
+        //user cant be found
+        return Promise.reject({
+          error:
+            "User not found. Make sure the refresh token and the user id are correct",
+        });
+      }
+
+      //if the code reaches here the user was found
+      // the refesh token exists in the database check if it's expired or not
+
+      req.user_id = user._id;
+      req.userObject = user;
+      req.refreshToken = refreshToken;
+
+      let isSessionValid = false;
+
+      user.sessions.forEach((session) => {
+        if (session.token == refreshToken) {
+          //check if the session has expired
+          if (User.hasRefreshTokenExpired(session.expiresAt) == false) {
+            // refresh token has not expired
+            isSessionValid = true;
+          }
+        }
+      });
+
+      if (isSessionValid) {
+        // the session is valid call Next to process this web request
+        next();
+      } else {
+        //the session is not valid
+        return Promise.reject({
+          error: "Refresh token has expired or the session is invalid",
+        });
+      }
+    })
+    .catch((e) => {
+      res.status(401).send(e);
+    });
+};
+
+// End Middleware
 
 //Route Handlers
 
@@ -195,6 +250,21 @@ app.post("/users/login", (req, res) => {
             .header("x-access-token", authTokens.accessToken)
             .send(user);
         });
+    })
+    .catch((e) => {
+      res.status(400).send(e);
+    });
+});
+
+//GET/users/me/access-token
+//its purpose it to generate and return access tokens
+
+app.get("/users/me/access-token", verifySession, (req, res) => {
+  // the user caller is authenticated and we have the user id and user object available for us
+  req.userObject
+    .generateAccessAuthToken()
+    .then((accessToken) => {
+      res.header("x-access-token", accessToken).send({ accessToken });
     })
     .catch((e) => {
       res.status(400).send(e);
