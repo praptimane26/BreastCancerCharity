@@ -6,7 +6,13 @@ const ListSchema = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 1,
-    trime: true,
+    trim: true,
+  },
+
+  //with auth
+  _userId: {
+    type: mongoose.Types.ObjectId,
+    required: true,
   },
 });
 
