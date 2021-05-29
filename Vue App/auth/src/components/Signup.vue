@@ -2,11 +2,14 @@
     <div>
         NAME: <input type="text" v-model="name"/> <br/>
         EMAIL: <input type="text" v-model="email" /> <br/>
-        PASSWORD: <input type="text" v-model="password" /> <br/>
+        PASSWORD: <input type="password" v-model="password" /> <br/>
         <button @click="signup" >Signup</button>
     </div>
 </template>
 <script>
+
+import axios from 'axios';
+
 export default {
     name: 'Signup',
     data() {
@@ -18,9 +21,12 @@ export default {
     },
     methods: {
         signup() {
-            console.log(this.name);
-            console.log(this.email);
-            console.log(this.password);
+            let newUser = {
+               name: this.name,
+               email: this.email,
+               password: this.password
+            }
+            axios.post('http://localhost:5000/signup', newUser)
         }
     }
 }
