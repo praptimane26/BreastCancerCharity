@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const dbConfig = require("./app/config/db.config");
 
 const app = express();
 
@@ -37,6 +38,10 @@ db.mongoose
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to bezkoder application." });
 });
+
+// routes
+require("./app/routes/auth.routes")(app);
+require("./app/routes/user.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
