@@ -30,6 +30,16 @@
             <font-awesome-icon icon="sign-in-alt" />Login
           </router-link>
         </li>
+              <li class="nav-item">
+          <router-link to="/breastcancerawareness" class="nav-link">
+            Breast Cancer Awareness
+          </router-link>
+        </li>
+          <li class="nav-item">
+          <router-link to="/bookanappointment" class="nav-link">
+            <font-awesome-icon icon="user" />Book an Appointment
+          </router-link>
+        </li>
       </div>
 
       <div v-if="currentUser" class="navbar-nav ml-auto">
@@ -44,6 +54,7 @@
             <font-awesome-icon icon="sign-out-alt" />LogOut
           </a>
         </li>
+        
       </div>
     </nav>
 

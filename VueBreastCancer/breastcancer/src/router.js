@@ -50,6 +50,12 @@ export const router = new Router({
       // lazy-loaded
       component: () => import("./views/BoardUser.vue"),
     },
+    {
+      path: "/breastcancerawareness",
+      name: "breastcancerawareness",
+      // lazy-loaded
+      component: () => import("./views/BreastCancerAwareness.vue"),
+    },
   ],
 });
 
