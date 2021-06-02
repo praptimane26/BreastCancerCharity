@@ -1,7 +1,12 @@
 # BreastCancerCharity
 
-to start the front end - ng serve runs on localhost4200
-to run the backend nodemon app.js or npm start will work too as long as you're in the api folder
+# Angular App
+to start the front end - "ng serve" runs on localhost4200
+to run the backend "nodemon app.js" or npm start will work too as long as you're in the api folder runs on localhost3000
+
+# VueJs App
+to start the VueBreastCancer which is the front end - npm run serve runs on localhost 8081
+to start the VueBreastCancerBackend which is the backend - node server.js runs on localost 8080
 
 This is an API fr the first phase which is the Task Manager "Once in the front end with backend running please click on the "Howdy List" to see how the task does get added"
 
