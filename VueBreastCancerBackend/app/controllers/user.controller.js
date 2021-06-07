@@ -1,7 +1,8 @@
 exports.allAccess = (req, res) => {
-  res.status(200).send("Public Content.");
+  res
+    .status(200)
+    .send("<h3>This is a heading.</h3> <p>This is a paragraph.</p>");
 };
-
 
 exports.userBoard = (req, res) => {
   res.status(200).send("User Content.");

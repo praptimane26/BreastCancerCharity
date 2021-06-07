@@ -1,8 +1,8 @@
 <template>
 
-  <div class="container">
+  <div v-html="content" class="container">
     <header class="jumbotron">
-      <h3>{{content}}</h3>
+      
     </header>
   </div>
 </template>
