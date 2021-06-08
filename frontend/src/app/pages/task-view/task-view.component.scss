@@ -5,15 +5,15 @@
     display: flex;
     width: 100%;
     height: 100%;
-    max-width: 900px;
-    max-height: 600px;
+    max-width: 1000px;
+    max-height: 680px;
 }
 
 .sidebar{
     display: flex;
     flex-direction: column;
 
-    width: 300px;
+    width: 250px;
     background: white;
 
     padding: 42px;
@@ -80,6 +80,9 @@
     border-radius: 5px;
     margin-top: 10px;
 
+    justify-content: center;
+    align-items: center;
+
     &:not(.complete) {
     cursor: pointer;
     transition: box-shadow 0.2sec ease, transform 0.2sec ease;
@@ -90,10 +93,14 @@
 
     &:hover {
         box-shadow: 0 0 0 5px #eeeeee;
+        .task-buttons {
+            opacity: 1;
+            transform: scale(1);
+        }
     }
 }
 
-    &.completed {
+    &.completed .task-text{
         text-decoration: line-through;
         opacity: 80%;
     }
@@ -101,6 +108,12 @@
     .task-text {
         display: flex;
         flex-grow: 1;
+    }
+
+    .task-buttons {
+        transition: opacity 0.2s, transform 0.2s;
+        opacity: 0;
+        transform: scale(0.85);
     }
 }
 

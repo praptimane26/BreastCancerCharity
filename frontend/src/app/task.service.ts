@@ -24,6 +24,11 @@ export class TaskService {
     return this.webReqService.patch(`lists/${id}`, { title });
   }
 
+  deleteList(id: string) {
+    //we want to send a web request to delete list
+    return this.webReqService.delete(`lists/${id}`);
+  }
+
   updateTask(listId: string, taskId: string, title: string) {
     // We want to send a web request to update a list
     return this.webReqService.patch(`lists/${listId}/tasks/${taskId}`, { title });
@@ -38,8 +43,15 @@ export class TaskService {
     return this.webReqService.post(`lists/${listId}/tasks`, { title });
   }
 
+  
+  deleteTask(listId: string, taskId: string) {
+    //we want to send a web request to delete task
+    return this.webReqService.delete(`lists/${listId}/tasks/${taskId}`);
+  }
+
+
   complete(task: Task) {
-    return this.webReqService.patch(`lists/${task._listid}/tasks/${ task._id }`, {
+    return this.webReqService.patch(`lists/${task._listid}/tasks/${task._id}`, {
       completed: !task.completed
     });
   }

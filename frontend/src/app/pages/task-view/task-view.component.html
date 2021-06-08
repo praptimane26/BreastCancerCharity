@@ -27,25 +27,43 @@
                             <div class="dropdown-trigger">
                               <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
                                 <span class="icon is-small">
-                                  <i class="fas fa-angle-down" aria-hidden="true"></i>
+                                  <i class="fas fa-cog" aria-hidden="true"></i>
                                 </span>
                               </button>
                             </div>
                             <div class="dropdown-menu" id="dropdown-menu4" role="menu">
                               <div class="dropdown-content">
-                                <div class="dropdown-item">
-                                  <p>You can insert <strong>any type of content</strong> within the dropdown menu.</p>
-                                </div>
+                                      <a [routerLink]="['/edit-list', selectedListId]" class="dropdown-item">
+                                        Edit
+                                      </a>
+                                      <a (click)="onDeleteListClick()" class="dropdown-item has-text-danger">
+                                        Delete
+                                      </a>
+                                    </div>
                               </div>
                             </div>
-                          </div>
-                </div>
-             
+                          </div>         
 
             <!-- Task Elements-->
             <div class="task" *ngFor="let task of tasks" (click)="onTaskClick(task)" [ngClass]="{ 'completed': task.completed }">
-                <p>{{ task.title }}</p>
+                <div class="task-text">
+                    <p>{{ task.title }}</p>
                  </div>
+                 <div class="task-buttons">
+
+                    <button class="button"[routerLink]="['/lists', selectedListId, 'edit-task', task._id]">
+                        <div class="icon">
+                            <i class="fas fa-edit"></i>
+                        </div>
+                    </button>
+
+                     <button class="button is-danger" (click)="onDeleteTaskClick(task._id)" style="margin-left: 10px;">
+                         <div class="icon">
+                             <i class="fas fa-trash"></i>
+                         </div>
+                     </button>
+                 </div>
+                </div>
 
                  <button routerLink="./new-task"  class="circle-add-button button is-primary">
                  <img src="../../../assets/plus-icon.svg" class="has-text-white">
@@ -61,4 +79,3 @@
         </div>
 
     </div>
-</div>
