@@ -32,6 +32,15 @@
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
 
+    .top-bar {
+        margin-bottom: 20px;
+        display: flex;
+        .title {
+            margin: 0;
+            flex-grow: 1;
+        }
+    }
+
 }
 
 
