@@ -16,6 +16,11 @@
             <button class="button is-primary has-text-white" routerLink="/new-list">+ New List</button>
 
         </div>
+        <div class="task-list-container has-background-light">
+          <div *ngIf="role == 'Admin'">
+            <h1>I am an Admin User</h1>
+          </div>
+        </div>
 
         <div class="task-list-container has-background-light">
             <div *ngIf="tasks"> 

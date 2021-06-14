@@ -20,6 +20,13 @@ const UserSchema = new mongoose.Schema({
     required: true,
     minlength: 8,
   },
+
+  role: {
+    type: String,
+    required: true,
+    trim: true,
+    unique: true,
+  },
   sessions: [
     {
       token: {
@@ -81,7 +88,7 @@ UserSchema.methods.generateRefreshAuthToken = function () {
 
 UserSchema.methods.createSession = function () {
   let user = this;
-
+  console.log("received and landed here - create session");
   return user
     .generateRefreshAuthToken()
     .then((refreshToken) => {
@@ -150,6 +157,8 @@ UserSchema.pre("save", function (next) {
   let user = this;
   let costFactor = 10;
 
+  console.log("got to presave");
+
   if (user.isModified("password")) {
     // if password is changed/edited run this code
 
@@ -172,7 +181,7 @@ let saveSessionToDatabase = (user, refreshToken) => {
     let expiresAt = generateRefreshTokenExpireTime();
 
     user.sessions.push({ token: refreshToken, expiresAt });
-
+    console.log("trying to actually save my user");
     user
       .save()
       .then(() => {

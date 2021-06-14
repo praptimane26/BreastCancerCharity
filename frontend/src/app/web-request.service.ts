@@ -38,10 +38,11 @@ export class WebRequestService {
        })
   }
 
-  signup(email: string, password: string) {
+  signup(email: string, password: string, role: string) {
     return this.http.post(`${this.ROOT_URL}/users`,{
       email,
-      password
+      password,
+      role
     }, { 
       observe: 'response'
        })

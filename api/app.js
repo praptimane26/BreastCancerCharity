@@ -299,21 +299,30 @@ app.post("/users", (req, res) => {
   let body = req.body;
   let newUser = new User(body);
 
+  console.log("received sign up");
+
+  console.log(body);
+
   newUser
     .save()
     .then(() => {
+      console.log("save then");
       return newUser.createSession();
     })
     .then((refreshToken) => {
       // Session created successfully - refreshToken returned
       // now we can generate an access authorization token for the user
 
+      console.log("refreshed token done");
+
       return newUser.generateAccessAuthToken().then((accessToken) => {
         //access authorization generation was successful and we can now return the object containing the auth tokens
+        console.log("Got the token back from the user");
         return { accessToken, refreshToken };
       });
     })
     .then((authTokens) => {
+      console.log(newUser);
       res
         .header("x-refresh-token", authTokens.refreshToken)
         .header("x-access-token", authTokens.accessToken)

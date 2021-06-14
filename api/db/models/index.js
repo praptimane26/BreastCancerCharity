@@ -2,9 +2,13 @@
 const { List } = require("./list.model");
 const { Task } = require("./task.model");
 const { User } = require("./user.model");
+const { Role, db } = require("./role.model");
+
+db.Roles = ["user", "admin", "moderator"];
 
 module.exports = {
   List,
   Task,
-  User
+  User,
+  Role,
 };

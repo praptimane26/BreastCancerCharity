@@ -3,6 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { TaskService } from 'src/app/task.service';
 import { Task } from 'src/app/models/task.model';
 import { List } from 'src/app/models/list.model';
+import { RoleService } from 'src/app/role.service';
 
 
 @Component({
@@ -14,13 +15,17 @@ export class TaskViewComponent implements OnInit {
 
   lists: List[];
   tasks: Task[];
+  user: any;
+  role: string;
 
   selectedListId:string;
 
 
-  constructor(private taskService: TaskService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private taskService: TaskService, private route: ActivatedRoute, private router: Router, private roleService: RoleService) { }
 
   ngOnInit(): void {
+    this.user = this.roleService.getUser();
+    this.role = this.roleService.getRole();
     this.route.params.subscribe (
       (params: Params) => {
         if (params.listId) {
