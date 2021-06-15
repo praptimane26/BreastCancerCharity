@@ -1,3 +1,77 @@
+
+<header>
+<div class="container">
+  <div *ngIf="role == 'Admin'">
+    <h1>Admin - Dashboard</h1>
+  </div>
+  <nav id="main-nav" class="flex items-center justify-between">
+      <div class="left flex items-center">
+          <div class="branding">
+          </div>
+          <div>
+              <a href="#">Breast Cancer</a>
+              <a href="#about">Breast Awareness</a>
+              <a href="#services">About Us</a>
+              <a href="#work">Book an Appointment</a>
+          </div>
+      </div>
+      <div class="right">
+          <button class="btn btn-primary">log out</button>
+      </div>
+  </nav>
+  <div class="hero flex items-center justify-between">
+    <img src="/src/images/badge1.png" alt="">
+      <div class="left flex-1 flex justify-center">
+      </div>
+      <div class="right flex-1">
+          <h1>Breast Cancer  <span>Charity</span></h1>
+      </div>
+  </div>
+</div>
+</header>
+<section id="about" class="about">
+  <div class="container flex items-center">
+      <div class="flex-1">
+          <img class="about-me-img" src="/src/images/BreastCancer-Banner.jpg" alt="">
+      </div>
+      <div class="flex-1">
+          <h1>About <span>Charity</span></h1>
+          <h3>Hello! I'm Kayla Jolly</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+              Feugiat vivamus at augue eget arcu. Sit amet venenatis urna cursus eget nunc. 
+              Volutpat maecenas volutpat blandit aliquam etiam erat.</p>            
+      </div>
+  </div>
+</section>
+<section class="bookanappointment">
+  <h1>Book an Appointment</h1>
+  <p>Book your free consultation with us today</p>
+  <button class="btn btn-primary">Book Now</button>
+</section>
+
+
+<section class="contact">
+  <div class="container">
+      <h1 class="section-heading">Contact <span>Us</span></h1>
+    
+      <form action="">
+          
+      <div class="input-wrap">
+          <input type="text" placeholder="Your Name *">
+          <input type="email" placeholder="Your Email *">
+      </div>
+      <div class="input-wrap-2">
+          <input type="text" placeholder="Your Subject...">
+          <textarea name="" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
+      </div>
+      <div class="btn-wrapper">
+          <button class="btn btn-primary">Send message</button>
+      </div>
+      </form>
+
+  </div>
+</section>
+
 <div class="centered-content">
     <div class="task-manager-container">
 
@@ -18,7 +92,10 @@
         </div>
         <div class="task-list-container has-background-light">
           <div *ngIf="role == 'Admin'">
-            <h1>Admin User - Dashboard</h1>
+            <h1>Admin - Dashboard</h1>
+          </div>
+          <div *ngIf="role == 'Moderator'">
+            <h1>Moderator - Dashboard</h1>
           </div>
         </div>
 
@@ -84,3 +161,8 @@
         </div>
 
     </div>
+  </div>
+
+
+    
+

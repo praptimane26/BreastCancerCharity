@@ -75,7 +75,7 @@
 
 .task {
     display: flex;
-    background: white;
+    background: rgb(255, 255, 255);
     padding: 15px 20px;
     border-radius: 5px;
     margin-top: 10px;
@@ -92,7 +92,7 @@
     }
 
     &:hover {
-        box-shadow: 0 0 0 5px #eeeeee;
+        box-shadow: 0 0 0 5px $turquoise;
         .task-buttons {
             opacity: 1;
             transform: scale(1);
