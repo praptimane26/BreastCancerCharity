@@ -161,7 +161,7 @@ UserSchema.pre("save", function (next) {
 
   if (user.isModified("password")) {
     // if password is changed/edited run this code
-
+    console.log("password is changed");
     //Generate Salt and hash the password
     bcrypt.genSalt(costFactor, (err, salt) => {
       bcrypt.hash(user.password, salt, (err, hash) => {
@@ -170,6 +170,7 @@ UserSchema.pre("save", function (next) {
       });
     });
   } else {
+    console.log("Passwprd-user is not modified");
     next();
   }
 });
@@ -189,6 +190,7 @@ let saveSessionToDatabase = (user, refreshToken) => {
         return resolve(refreshToken);
       })
       .catch((e) => {
+        console.log(e);
         reject(e);
       });
   });
