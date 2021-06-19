@@ -1,4 +1,8 @@
 <header>
+
+<!-- <div ngIf="Admin">
+  <p>sdfsfsdf</p>
+</div> -->
 <div class="container">
   <nav id="main-nav" class="flex items-center justify-between">
       <div class="left flex items-center">
@@ -42,7 +46,8 @@
 <section class="bookanappointment">
   <h1>Book an Appointment</h1>
   <p>Book your free consultation with us today</p>
-  <button class="btn btn-primary">Book Now</button>
+  <!-- <button class="btn btn-primary" (click)="openBookingModel(bookingModel)">Book Now</button> -->
+  <!-- <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button> -->
 </section>
 
 
@@ -53,16 +58,18 @@
       <form action="">
           
       <div class="input-wrap">
-          <input type="text" placeholder="Your Name *">
-          <input type="email" placeholder="Your Email *">
+          <input #name type="text" placeholder="Your Name *">
+          <input #email type="email" placeholder="Your Email *">
       </div>
       <div class="input-wrap-2">
-          <input type="text" placeholder="Your Subject...">
-          <textarea name="" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
+          <input #subject type="text" placeholder="Your Subject...">
+          <textarea #message name="" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
       </div>
       <div class="btn-wrapper">
-          <button class="btn btn-primary">Send message</button>
+        <button class="btn btn-primary" type='button' (click)="addBookings(name.value, email.value, subject.value, message.value)">Send message</button>
+          <hr>
       </div>
+    
       </form>
 
   </div>
@@ -157,6 +164,32 @@
         </div>
 
     </div>
+
+
+    <ng-template #content let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="dateOfBirth">Date of birth</label>
+            <!-- <div class="input-group">
+              <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+              </div>
+            </div> -->
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+      </div>
+    </ng-template>
 
 
 

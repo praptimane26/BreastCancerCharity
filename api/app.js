@@ -8,7 +8,7 @@ const { mongoose } = require("./db/mongoose");
 const bodyParser = require("body-parser");
 
 //Load in the mongoose models
-const { List, Task, User } = require("./db/models");
+const { List, Task, User, Bookings } = require("./db/models");
 
 /*const { JsonWebTokenError } = require("jsonwebtoken");*/
 
@@ -123,8 +123,38 @@ app.get("/lists", authenticate, (req, res) => {
   });
 });
 
+app.post("/bookings", authenticate, (req, res) => {
+  console.log(req);
+
+  let name = req.body.payload.name;
+  let email = req.body.payload.email;
+  let subject = req.body.payload.subject;
+  let message = req.body.payload.message;
+  //  let booking = new Bookings({
+  //    name = req.body.payload.name,
+  //    email = req.body.payload.email,
+  //    subject = req.body.payload.subject,
+  //    message = req.body.payload.message,
+  //    _userId: req.user_id,
+  //  })
+
+  let booking = new Bookings({
+    name,
+    email,
+    subject,
+    message,
+    _userId: req.user_id,
+  });
+
+  booking.save().then((bookingList) => {
+    //the full list document is returned (including ID)
+    res.send(bookingList);
+  });
+});
+
 //POST/lists (Purpose to create a list)
 app.post("/lists", authenticate, (req, res) => {
+  console.log("adding a list");
   //we want to create a new list and return the new lst document back to user which includes the new id
   //the list information will be passed on by the JSON request body
   let title = req.body.title;

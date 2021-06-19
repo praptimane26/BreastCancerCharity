@@ -1,13 +1,20 @@
 <template>
 
-  <div v-html="content" class="container">
-    <header class="jumbotron">
-      
-    </header>
+  
+  <div>
+    <button v-on:click="OpenModal()">Bookings</button>
+    <div id="example-2">
+  <button v-on:click="say('hi')">Say Hi</button>
+  <button v-on:click="say('what')">Say What</button>
+</div>
   </div>
+  
+ 
+
 </template>
 
 <script>
+// import func from 'vue-editor-bridge';
 import UserService from '../services/user.service';
 
 export default {
@@ -29,7 +36,20 @@ export default {
           error.toString();
       }
     );
+  },
+  // methods(){
+  //   OpenModal: function() {
+  //     console.log("dasdasd")
+  //   }
+   methods: {
+    say: function (msg) {
+      alert(msg)
+    }
   }
+
+
+    
+  
 };
 
 </script>

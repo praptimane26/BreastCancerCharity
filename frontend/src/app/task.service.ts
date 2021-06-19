@@ -14,6 +14,19 @@ export class TaskService {
     return this.webReqService.get('lists');
   }
 
+  addBooking(name: string, email: string, subject: string, message: string){
+    var payload = {
+      name: name,
+      email :email,
+      subject: subject,
+      message: message
+    }
+
+    console.log("add booking service need a modal", payload)
+    return this.webReqService.post('bookings', { payload });
+    
+  }
+
   createList(title: string) {
     //we want to send a web request to create a list
     return this.webReqService.post('lists', { title });

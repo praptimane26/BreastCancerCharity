@@ -1,7 +1,7 @@
 exports.allAccess = (req, res) => {
   res
     .status(200)
-    .send("<h3>This is a heading.</h3> <p>This is a paragraph.</p>");
+    .send("<h3>This is a heading.</h3> <p>This is a paragrdsacaph.</p>");
 };
 
 exports.userBoard = (req, res) => {
