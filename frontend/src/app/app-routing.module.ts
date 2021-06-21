@@ -8,6 +8,8 @@ import { SignupPageComponent } from './pages/signup-page/signup-page.component';
 import { TaskViewComponent } from './pages/task-view/task-view.component';
 import { EditListComponent } from './pages/edit-list/edit-list.component';
 import { EditTaskComponent } from './pages/edit-task/edit-task.component';
+import { AdminDashboard } from './pages/admin-dashboard/admin-dashboard.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -18,7 +20,8 @@ const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
   { path: 'signup', component: SignupPageComponent },
   { path: 'lists/:listId/new-task', component: NewTaskComponent },
-  { path: 'lists/:listId/edit-task/:taskId', component: EditTaskComponent }
+  { path: 'lists/:listId/edit-task/:taskId', component: EditTaskComponent },
+  { path: 'dashboard', component: AdminDashboard }
 ];
 
 @NgModule({

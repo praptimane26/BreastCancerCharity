@@ -9,10 +9,11 @@
           <div class="branding">
           </div>
           <div>
-              <a href="#">Breast Cancer</a>
-              <a href="#about">Breast Awareness</a>
-              <a href="#services">About Us</a>
-              <a href="#work">Book an Appointment</a>
+              <a routerLink="/">Breast Cancer</a>
+              <a *ngIf="role == 'Admin'" routerLink="/dashboard">DAsh</a>
+              <a routerLink="/about">Breast Awareness</a>
+              <a routerLink="/services">About Us</a>
+              <a routerLink="/work">Book an Appointment</a>
           </div>
       </div>
       <div class="right">
@@ -166,7 +167,7 @@
     </div>
 
 
-    <ng-template #content let-modal>
+    <!-- <ng-template #content let-modal>
       <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -177,19 +178,19 @@
         <form>
           <div class="form-group">
             <label for="dateOfBirth">Date of birth</label>
-            <!-- <div class="input-group">
+             <div class="input-group">
               <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
               </div>
             </div> -->
-          </div>
+          <!-- </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
       </div>
-    </ng-template>
+    </ng-template> --> 
 
 
 

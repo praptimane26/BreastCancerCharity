@@ -123,8 +123,18 @@ app.get("/lists", authenticate, (req, res) => {
   });
 });
 
+app.get("/bookings" ,authenticate, (req, res) => {
+  console.log(res)
+  //find all
+  Bookings.find().then((
+    Bookings => {
+      res.send(Bookings)
+    }
+  ))
+
+})
+
 app.post("/bookings", authenticate, (req, res) => {
-  console.log(req);
 
   let name = req.body.payload.name;
   let email = req.body.payload.email;
