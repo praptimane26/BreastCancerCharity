@@ -10,10 +10,8 @@
           </div>
           <div>
               <a routerLink="/">Breast Cancer</a>
-              <a *ngIf="role == 'Admin'" routerLink="/dashboard">DAsh</a>
-              <a routerLink="/about">Breast Awareness</a>
-              <a routerLink="/services">About Us</a>
-              <a routerLink="/work">Book an Appointment</a>
+              <a *ngIf="role == 'Admin'" routerLink="/dashboard">Admin Dashboard</a>
+
           </div>
       </div>
       <div class="right">
@@ -21,7 +19,7 @@
       </div>
   </nav>
   <div class="hero flex items-center justify-between">
-    <img src="/src/images/badge1.png" alt="">
+    <img src="" alt="">
       <div class="left flex-1 flex justify-center">
       </div>
       <div class="right flex-1">
@@ -33,20 +31,26 @@
 <section id="about" class="about">
   <div class="container flex items-center">
       <div class="flex-1">
-          <img class="about-me-img" src="/src/images/BreastCancer-Banner.jpg" alt="">
+          <img class="about-me-img" src="" alt="">
       </div>
       <div class="flex-1">
           <h1>About <span>Charity</span></h1>
-          <h3>Hello! I'm Kayla Jolly</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-              Feugiat vivamus at augue eget arcu. Sit amet venenatis urna cursus eget nunc. 
-              Volutpat maecenas volutpat blandit aliquam etiam erat.</p>            
+          <h3>Welcome!</h3>
+          <p>According to the World Health Organization, breast cancer is the most common cancer among women worldwide, <br>
+            claiming the lives of hundreds of thousands of women each year and affecting countries at all levels of modernization.</p>            
       </div>
   </div>
 </section>
 <section class="bookanappointment">
-  <h1>Book an Appointment</h1>
-  <p>Book your free consultation with us today</p>
+  <h1>Breast Cancer Information</h1>
+  <p>In 2020, an estimated 276,480 new cases of invasive breast cancer will be diagnosed in women in the U.S. as well as 48,530 new cases of non-invasive (in situ) breast cancer.
+    64% of breast cancer cases are diagnosed at a localized stage (there is no sign that the cancer has spread outside of the breast), for which the 5-year survival rate is 99%.
+    This year, an estimated 42,170 women will die from breast cancer in the U.S.
+    Although rare, men get breast cancer too. In 2020, an estimated 2,620 men will be diagnosed with breast cancer this year in the U.S. and approximately 520 will die.
+    1 in 8 women in the United States will be diagnosed with breast cancer in her lifetime
+    Breast cancer is the most common cancer in American women, except for skin cancers. It is estimated that in 2020, approximately 30% of all new women cancer diagnoses will be breast cancer.
+    There are over 3.5 million breast cancer survivors in the United States.
+    On average, every 2 minutes a woman is diagnosed with breast cancer in the United States.</p>
   <!-- <button class="btn btn-primary" (click)="openBookingModel(bookingModel)">Book Now</button> -->
   <!-- <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button> -->
 </section>
@@ -54,7 +58,8 @@
 
 <section class="contact">
   <div class="container">
-      <h1 class="section-heading">Contact <span>Us</span></h1>
+      <h1 class="section-heading">Book an <span>Appointment</span></h1>
+      <h2> Please fill out the form to book a free Breast Cancer check up with us</h2>
     
       <form action="">
           
@@ -95,12 +100,7 @@
 
         </div>
         <div class="task-list-container has-background-light">
-          <div *ngIf="role == 'Admin'">
-            <h1>Admin - Dashboard</h1>
-          </div>
-          <div *ngIf="role == 'Moderator'">
-            <h1>Moderator - Dashboard</h1>
-          </div>
+
         </div>
 
         <div class="task-list-container has-background-light">
