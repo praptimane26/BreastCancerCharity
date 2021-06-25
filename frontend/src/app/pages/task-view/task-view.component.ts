@@ -6,7 +6,7 @@ import { List } from 'src/app/models/list.model';
 import { RoleService } from 'src/app/role.service';
 import { Booking } from 'src/app/models/booking.model';
 
-// import { Content } from '@angular/compiler/src/render3/r3_ast';cd @ng-bootstrap
+
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -78,15 +78,8 @@ export class TaskViewComponent implements OnInit {
   
 
   addBookings(name: string, email: string, subject: string, message: string) {
-    // console.log("add booking ts")
-    // this.taskService.addBooking(name,email,subject,message).subscribe() => {
-
-    // }
-
     this.taskService.addBooking(name, email,subject,message).subscribe((list: Booking) => {
       console.log(Booking);
-      //Now we navigate to /list/response._id
-      // this.router.navigate([ '/lists', list._id ]);
     });
     
   }
@@ -111,6 +104,11 @@ export class TaskViewComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+  logout(): void {
+    this.roleService.signOut();
+    window.location.reload();
   }
 
 }

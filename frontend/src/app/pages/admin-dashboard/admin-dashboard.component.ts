@@ -18,22 +18,8 @@ lists: List[];
   constructor(private adminService: AdminService, private taskService: TaskService) { }
 
   ngOnInit(): void {
-      console.log("in ts")
-
-    // this.taskService.getLists().subscribe((lists: List[]) => {
-    //     this.lists = lists;
-    //   })
-   
     this.adminService.getBookings().subscribe((bookings: Booking[] ) => {
         this.bookings = bookings;
             console.log(bookings)});
-            
-    console.log("in ts 2")
-
-
   }
-
-
-
-  
 }

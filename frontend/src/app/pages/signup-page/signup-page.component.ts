@@ -16,9 +16,7 @@ export class SignupPageComponent implements OnInit {
   }
 
   onSignupButtonClicked(email: string, password: string, role: string) {
-    console.log("attemping to sign up");
     this.authService.signup(email, password, role).subscribe((res: HttpResponse<any>)=> {
-      console.log("I got something back from sign up");
       console.log(res);
     });
   }

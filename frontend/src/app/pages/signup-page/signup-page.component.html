@@ -23,23 +23,25 @@
           </div>
           <div class="field">
             <p class="control has-icons-left">
-              <input #roleInput class="input has-background-light" type="text" placeholder="Role">
+              <input #roleInput class="input has-background-light" type="text" placeholder="Role - Admin/User">
               <span class="icon is-small is-left">
                 <i class="fas fa-envelope"></i>
               </span>
             </p>
           </div>
+            
+          <p>Role: Admin/User</p>
+          <br>
           <div class="field"style="display: flex; justify-content: flex-end;">
             <p class="control">
               <button class="button is-success has=has-text-white"(click)="onSignupButtonClicked(emailInput.value, pwInput.value, roleInput.value )">
                 Sign Up
               </button>
-            </p>
+            </p>        
           </div>
 
           <br>
-
-
+        
           <p class="has-text-grey">Already got an account? <a routerLink="/login">Login</a> now!</p>
 
     </div>

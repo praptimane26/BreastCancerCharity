@@ -12,7 +12,6 @@ import { WebRequestService } from './web-request.service';
     constructor(private webReqService: WebRequestService) { }
   
     getBookings() {
-        // console.log(this.webReqService.get('bookings'))
         console.log("get booking service")
       return this.webReqService.get('bookings');
     }

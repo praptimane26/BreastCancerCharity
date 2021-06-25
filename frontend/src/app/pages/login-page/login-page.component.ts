@@ -29,4 +29,9 @@ export class LoginPageComponent implements OnInit {
     });
   }
 
+  logout(): void {
+    this.roleService.signOut();
+    window.location.reload();
+  }
+
 }
