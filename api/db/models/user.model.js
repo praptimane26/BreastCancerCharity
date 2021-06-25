@@ -88,7 +88,6 @@ UserSchema.methods.generateRefreshAuthToken = function () {
 
 UserSchema.methods.createSession = function () {
   let user = this;
-  console.log("received and landed here - create session");
   return user
     .generateRefreshAuthToken()
     .then((refreshToken) => {

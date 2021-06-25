@@ -71,30 +71,6 @@ export class WebReqInterceptor implements HttpInterceptor {
     }
   }
 
- /* refreshAccessToken() {
-    if (this.refreshAccessToken) {
-      return new Observable(observer => {
-        this.accessTokenRefreshed.subscribe(()=> {
-          //this code will run when the access token is refreshed
-          observer.next();
-          observer.complete();
-        })
-      })
-    } else {
-      this.refreshingAccessToken = true;
-    //we want to call a method in the auth service to send a request to refresh token
-    return this.authService.getNewAccessToken().pipe(
-      tap(()=> {
-        console.log("Access Token Refreshed!");
-        this.refreshingAccessToken = false;
-        this.accessTokenRefreshed.next();
-      })
-    )
-  }
-}*/
-
-  
-
   addAuthHeader(request: HttpRequest<any>) {
     //get the access token
     const token = this.authService.getAccessToken();
