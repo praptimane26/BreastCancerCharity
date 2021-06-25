@@ -140,13 +140,7 @@ app.post("/bookings", authenticate, (req, res) => {
   let email = req.body.payload.email;
   let subject = req.body.payload.subject;
   let message = req.body.payload.message;
-  //  let booking = new Bookings({
-  //    name = req.body.payload.name,
-  //    email = req.body.payload.email,
-  //    subject = req.body.payload.subject,
-  //    message = req.body.payload.message,
-  //    _userId: req.user_id,
-  //  })
+
 
   let booking = new Bookings({
     name,
